@@ -1,0 +1,8 @@
+restapy.py was moved from a restapy folder, deleted to avoid confusion
+
+Instructions:
+
+python restapi.py
+
+cd data
+python -m SimpleHTTPServer 8001

@@ -1,0 +1,16 @@
+[
+    {
+        "name": "keyword1", 
+        "langs": ["en", "es"], 
+        "synonyms": ["synonym1", "synonym2 multiword allowed"], 
+        "nots": ["not1", "not2"], 
+        "id": 1
+    },
+    {
+        "name": "keyword2", 
+        "langs": ["locale", "locale"], 
+        "synonyms": ["synonym1", "synonym2 multiword allowed"], 
+        "nots": ["not1", "not2"], 
+        "id": 2
+    } 
+]
