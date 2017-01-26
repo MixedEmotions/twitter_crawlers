@@ -12,7 +12,14 @@ These crawlers connect to the Twitter Stream API and listen for tweets. For each
 * project crawler with hdfs: Same as before, but writes into HDFS.
 
 ## USAGE
-For using these crawlers you will need to create a Twitter application and provide your tokens in the scripts. Edit the corresponding script and add your tokens in these lines:
+
+For using these crawlers you will need to create a Twitter application and provide your tokens in the scripts.
+
+### Projects Crawler
+
+For using this crawler you will need to create a Twitter application and provide your tokens in the scripts. 
+
+Edit `twitter_crawler_project.py`. Add your tokens in these lines:
 ```
   access_token = "Your tokens here"
   access_token_secret= ""
@@ -20,6 +27,18 @@ For using these crawlers you will need to create a Twitter application and provi
   client_secret = ""
   
   ```
+  Also, change accepted languages, the streaming restarting time and the output directory in:
+```
+languages = ["es", "en"]
+
+RESTART_TIME = 14400
+PROJECTS_FOLDER = '/var/data/campaigns_twitter_crawler/collected_tweets/'
+```
+
+Take a look at `start_project_twitter_crawler.sh` and be sure pids and logs folder exist.
+  
+  
+  
   Regarding the projects crawler, first edit projects.json to add your project information data. Use the base `projects.json` file
 ```
   [
