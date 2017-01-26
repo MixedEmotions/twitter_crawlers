@@ -1,4 +1,5 @@
 # twitter_crawlers
+## About
 
 MixedEmotions' Python service that connects to the Twitter streaming service and filters tweets with the related keywords.
 
@@ -10,7 +11,7 @@ These crawlers connect to the Twitter Stream API and listen for tweets. For each
 * project crawler: Reads from projects.json the configuration of some "projects" to extract info from. Supports synonyms and forbidden words
 * project crawler with hdfs: Same as before, but writes into HDFS.
 
-# USAGE
+## USAGE
 For using these crawlers you will need to create a Twitter application and provide your tokens in the scripts. Edit the corresponding script and add your tokens in these lines:
 ```
   access_token = "Your tokens here"
