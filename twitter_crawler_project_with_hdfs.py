@@ -9,7 +9,7 @@ from twarc import Twarc
 from hdfs import InsecureClient
 
 
-access_token = "put here your keys"
+access_token = "Your tokens here"
 access_token_secret= ""
 client_key = ""
 client_secret = ""
@@ -19,9 +19,9 @@ total_keywords = {}
 languages = ["es", "en"]
 
 TWEET_DUMP_SIZE = 500
-RESTART_TIME = 3600
-HDFS_URL = 'http://192.168.1.2:50070'
-HDFS_USER  = 'put here your hdfs_user'
+RESTART_TIME = 14400
+HDFS_URL = 'http://192.168.1.12:50070'
+HDFS_USER  = 'hdfs'
 PROJECTS_FOLDER = 'data/projects/'
 WRITE_TO_FILE = False
 
@@ -58,6 +58,18 @@ def main():
         with open(input_file, "r") as fr:
             string_txt = fr.read()
             projects = json.loads(string_txt)
+            #for line in fr:
+            #    # empty line
+            #    if line != '\n':
+            #        # remove white chars in start and end of line
+            #        line = line.rstrip('\n\t ')
+            #        line = line.strip('\t ')
+            #        # append line to array and string
+            #        keywords = line.split("::")[1:]
+            #        project_id = line.split("::")[0]
+            #        keys = keys + ",".join(keywords) + ","
+            #        project = {"id":project_id, "name": keywords[0], "keywords":keywords}
+            #        projects.append(project)
         for project in projects:
             keys += ",".join(project["synonyms"]) + ","
 
@@ -141,7 +153,7 @@ def stream(query, projects, t):
                     filename = filepath(project_id, datestr, timestr)
                     check = 0
                     is_tweet = False
-                    if tweet['lang'] in languages:
+                    if 'lang' in tweet.keys() and tweet['lang'] in languages:
                         for keyword in project["synonyms"]:
                             # create list of words in keyword
                             wlist = keyword.split()
@@ -207,6 +219,11 @@ def stream(query, projects, t):
                         filename = filepath(project_id, datestr, timestr)
                         if(len(tweets_to_write[project_id])>0):
                             hdfs_write_tweets(tweets_to_write[project_id], filename+"_"+str(indexes[project_id]+1), project, client)
+                            #print "Goint to write into %s_%s" % (filename, indexes[project_id])                          
+                            #formatted_tweets = [format_tweet(tweet, project) for tweet in tweets_to_write[project_id]]
+                            #text_to_write = "\n".join(tweets_to_write[project_id])
+                            #with client.write(filename + "_" + str(indexes[project_id]+1), encoding='utf-8') as writer:
+                            #    writer.write(text_to_write)
                     if WRITE_TO_FILE:
                         # hour statistics
                         with open("data/statistics"+"/"+datestr+"/"+timestr+".txt", "w") as fw:
@@ -241,6 +258,31 @@ def stream(query, projects, t):
                         fw.write(str(word) + " : " + str(total_keywords[word]) + "\n")
             sys.stdout.write("QUIT\n")
             sys.exit(0)
+        # except for problems with key
+        #except KeyError:
+        #    # exit every hour and start function again
+        #    if start_time+3600 < time.time():
+        #        if WRITE_TO_FILE:
+        #            for project in projects:
+        #                word = project["name"]
+        #                project_id = project['id']
+        #                with open(filepath(project_id, datestr, timestr)+".json", "a+") as fw:
+        #                    fw.seek(-1, os.SEEK_END)
+        #                    if fw.read() == ",":
+        #                        fw.seek(-1, os.SEEK_END)
+        #                        fw.truncate()
+        #                    fw.write("]")
+        #                # hour statistics
+        #                with open("data/statistics"+"/"+datestr+"/"+timestr+".txt", "w") as fw:
+        #                    for word in hour_keywords:
+        #                        fw.write(str(word) + " : " + str(hour_keywords[word]) + "\n")
+        #                # total statistics
+        #                with open("data/statistics/statistics.txt", "w") as fw:
+        #                    for word in total_keywords:
+        #                        fw.write(str(word) + " : " + str(total_keywords[word]) + "\n")
+        #        return True
+        #    continue
+    # error
     return False
 
 def format_tweet(tweet, project):

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-COMMAND="python twitter2015.py keywords"
-SERVICE_NAME="BUT Twitter Crawler"
+COMMAND="python twitter_crawler_keywords.py keywords"
+SERVICE_NAME="Keywords Twitter Crawler"
 LOGS_FOLDER=logs
-LOG_FILE=$LOGS_FOLDER/but_tw_crawler.log
+LOG_FILE=$LOGS_FOLDER/keywords_tw_crawler.log
 PID_FOLDER=pids
-PID_FILE=$PID_FOLDER/but_tw_crawler.pid
+PID_FILE=$PID_FOLDER/keywords_tw_crawler.pid
 CURRENT_SERV_PID=0
 if [ -e "$PID_FILE" ];
    then 

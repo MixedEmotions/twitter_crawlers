@@ -1,11 +1,11 @@
 #!/bin/bash
 
-COMMAND="python twitter_pt_project.py projects.json"
-SERVICE_NAME="PT Twitter Crawler"
+COMMAND="python twitter_crawler_project.py projects.json"
+SERVICE_NAME="Project Twitter Crawler"
 LOGS_FOLDER=logs
-LOG_FILE=$LOGS_FOLDER/pt_tw_crawler.log
+LOG_FILE=$LOGS_FOLDER/project_tw_crawler.log
 PID_FOLDER=pids
-PID_FILE=$PID_FOLDER/pt_tw_crawler.pid
+PID_FILE=$PID_FOLDER/project_tw_crawler.pid
 CURRENT_SERV_PID=0
 if [ -e "$PID_FILE" ];
    then 
