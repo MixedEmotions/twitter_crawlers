@@ -30,10 +30,11 @@ def main():
         if os.access(sys.argv[1], os.R_OK):
             input_file = sys.argv[1]
         else:
-            sys.stderr.write("ERROR, NEED VALID FILE\n")
+            sys.stderr.write("ERROR, NEED VALID PROJECT FILE!\n")
+            sys.stderr.write("%s NOT ACCESSIBLE!\n"%sys.argv[1])
             sys.exit(1)
     else:
-        sys.stderr.write("ERROR, NEED FILE\n")
+        sys.stderr.write("ERROR, NEED PROJECT FILE\n")
         sys.exit(1)
 
     # check if data folder exists or create it
