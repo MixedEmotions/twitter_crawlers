@@ -1,4 +1,4 @@
-# twitter_crawlers
+# Twitter Crawlers
 ## About
 
 MixedEmotions' Python service that connects to the Twitter streaming service and filters tweets with the related keywords.
