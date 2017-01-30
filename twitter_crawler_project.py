@@ -140,7 +140,7 @@ def stream(query, projects, t):
                             if len(wlist)==1:
                                word_match = re.search(r"@%s\b" % keyword, tweet["text"], re.IGNORECASE)
                                if word_match:
-                                   tweet["synonym_found"] = "%s%s" %  (word_match.group(), keyword)
+                                   tweet["synonym_found"] = "%s" %  keyword
                                    is_tweet = True
                                    break
                             if is_tweet:
