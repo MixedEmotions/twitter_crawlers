@@ -130,7 +130,7 @@ def stream(query, projects, t):
                             # for every word in keyword
                             for w in wlist:
                                 # check if word is in tweet
-                                word_match = re.search(r"\b%s\b" % w, tweet["text"], re.IGNORECASE)
+                                word_match = re.search(r"\b%s\b" % re.escape(w), tweet["text"], re.IGNORECASE)
                                 if word_match:
                                     check += 1
                                     if check== w_length:
@@ -138,7 +138,7 @@ def stream(query, projects, t):
                                         is_tweet = True
                                         break
                             if len(wlist)==1:
-                               word_match = re.search(r"@%s\b" % keyword, tweet["text"], re.IGNORECASE)
+                               word_match = re.search(r"@%s\b" % re.escape(keyword), tweet["text"], re.IGNORECASE)
                                if word_match:
                                    tweet["synonym_found"] = "@%s" %  keyword
                                    is_tweet = True
