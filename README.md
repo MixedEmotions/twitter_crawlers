@@ -64,7 +64,7 @@ Take a look at `start_project_twitter_crawler.sh` and be sure pids and logs fold
 * nots: among the tweets with the synonyms, discard tweets containing these phrases
 * id: numerical id
 
-Then execute `./start_project_twitter_crawler.sh`
+Then execute `./start_project_twitter_crawler.sh start`
 
 Logs are saved in the `/logs` folder.
 
